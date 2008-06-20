@@ -1,0 +1,29 @@
+<h1>LDAP Queries</h1>
+<p style="float: right;">
+<%= link_to "New Query", :action => "new" %><br/>
+<%= link_to "Edit Settings", :action => "settings" %>
+</p>
+<table id="ldap_queries" class="index" cellspacing="0" cellpadding="0" border="0" style="clear:both">
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Base</th>
+        <th>Filter</th>
+        <th>Attributes</th>
+        <th class="modify">Modify</th>
+    </tr>
+    <tbody>
+    <% if @ldap_queries.size > 0 %>
+        <%= render :partial => "ldap_query", :collection => @ldap_queries %>
+    <% else %>
+    <tr>
+        <td class="note" colspan="5">No saved queries</td>
+    </tr>
+    <% end %>
+    </tbody>
+</table>
+<script type="text/javascript">
+// <![CDATA[
+    new RuledTable("ldap_queries");
+// ]]>
+</script>

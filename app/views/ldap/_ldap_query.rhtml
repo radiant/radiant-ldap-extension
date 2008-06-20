@@ -1,0 +1,10 @@
+<tr class="node level-0 no-children" id="ldap_query_<%= ldap_query.id %>">
+    <td class="snippet"><%= image_tag "directory.gif", :align => "center", :class => "icon", :alt => "directory-icon" %>
+        <%= link_to ldap_query.name, :action => "edit", :id => ldap_query %></td>
+    <td><%= h ldap_query.base_dn %></td>
+    <td><%= h ldap_query.filter %></td>
+    <td><%= h ldap_query.attrs %></td>
+    <td><%= link_to image_tag("/images/admin/remove.png", :alt => "Remove"), 
+                {:action => "destroy", :id => ldap_query}, 
+                :confirm => "Are you sure you want to delete this query?" %></td>
+</tr>

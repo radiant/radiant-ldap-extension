@@ -1,0 +1,32 @@
+<h1>Edit LDAP Settings</h1>
+<% form_for :config, @config, :url => {:action => "settings" } do |f| %>
+<div class="form-area">
+    <p class="content">
+        <label for="config_server">Server</label><br/>
+        <%= f.text_field :server %>
+    </p>
+    <p class="content">
+        <label for="config_base_dn">Base DN</label><br/>
+        <%= f.text_field :base_dn %>
+    </p>
+    <p class="content">
+        <label for="config_port">Port</label><br/>
+        <%= f.text_field :port %>
+    </p>
+    <p class="content">
+        <label for="config_bind_user">Bind Username</label><br/>
+        <%= f.text_field :bind_user %>
+    </p>
+    <p class="content">
+        <label for="config_bind_password">Bind Password</label><br/>
+        <%= f.text_field :bind_password %>
+    </p>
+    <p class="content">
+        <label for="config_use_ssl">Use SSL?</label> 
+        <%= f.check_box :use_ssl, {}, "true", "false" %>
+    </p>
+</div>
+<p class="buttons">
+<%= submit_tag "Save Settings" %> <%= link_to "Cancel", :action => "index" %>
+</p>
+<% end %>

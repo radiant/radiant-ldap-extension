@@ -1,0 +1,5 @@
+<%= render :partial => "results_box" %>
+<h1>Edit LDAP Query</h1>
+<% form_for :ldap_query, @ldap_query, :url => { :action => 'update', :id => @ldap_query } do |f| %>
+    <%= render :partial => "form", :locals => {:f => f} %>
+<% end %>

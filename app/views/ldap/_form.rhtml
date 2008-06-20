@@ -1,0 +1,28 @@
+<div class="form-area">
+    <p class="title">
+        <label for="ldap_query_name">Name</label><br />
+        <%= f.text_field :name, :class => "textbox", :maxlength => 255 %>
+    </p>
+    <p class="content">
+        <label for="ldap_query_base_dn">Base DN</label><br/>
+        <%= f.text_field :base_dn %>
+    </p>
+    <p class="content">
+        <label for="ldap_query_filter">Filter</label><br/>
+        <%= f.text_field :filter %>
+    </p>
+    <p class="content">
+        <label for="ldap_query_attrs">Attributes</label><br/>
+        <%= f.text_field :attrs %>
+    </p>
+    <p class="content">
+        <label for="ldap_query_scope">Scope</label><br/>
+        <%= f.select :scope,  LdapQuery.scopes.to_a %>
+    </p>
+</div>
+<p class="buttons">
+    <%= save_model_button(@ldap_query) %> 
+    <%= submit_to_remote :test, "Test Query", 
+            :url => { :action => "test_query" }, 
+            :html => {:class => "button"}, :failure => "alert('Query failed');"  %>
+</p>

@@ -1,0 +1,16 @@
+<%= link_to_function "[x] close", update_page {|page| page.visual_effect :fade, 'results'}, :style=> "display: block; float:right;" %>
+<h1>Query Results</h1>
+<table>
+<tr>
+    <% @results.first.keys.each do |key| %>  
+    <th><%= key %></th>
+    <% end %>
+</tr>
+<% @results.each do |result| %>
+<tr>
+    <% result.each_value do |value| %>
+    <td><%= (value.is_a? Array) ? value.to_yaml : value %></td>
+    <% end %>
+</tr>
+<% end %>
+</table>

@@ -1,0 +1,29 @@
+<% content_for 'page_css' do %>
+    #results {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        border-top: 2px solid gray;
+        height: 25%;
+        overflow: scroll;
+        background: white;
+        padding: 5px;
+        }
+    #results table {
+        border: 1px outset;
+        border-collapse: collapse;
+        border-spacing: 1px;
+        empty-cells: hide;
+    }
+    #results table td {
+        border: 1px inset;
+        padding: 2px;
+    }
+    #results table th {
+        background: #eee;
+    }
+<% end %>
+<div id="results" style="display: none;">
+</div>

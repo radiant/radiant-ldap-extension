@@ -1,0 +1,56 @@
+= LDAP
+
+Created by: Sean Cribbs
+     version: 0.1
+
+The LDAP extension allows access to LDAP directory information from
+within Radiant pages.  It includes an admin interface where you can create,
+test, and save 'canned' queries that can be reused in your pages.
+
+== Setup
+
+1) The Ruby-LDAP library is required.  Instructions for installing the library can be
+found at http://ruby-ldap.sourceforge.net/
+
+2) Make sure your instance of OpenLDAP is configured correctly.  I had to disable TLS
+certificate validation on mine to get SSL to work.  If you have a cert from a root CA,
+this will not be a problem.
+
+3) Checkout or copy the extension into vendor/extensions/ldap under your instance of Radiant.
+
+4) Run rake db:migrate:extensions to create the schema.
+
+5) Either through the included admin interface ('Edit Settings'), script/console 
+(Radiant::Config model), or through a database administration and query tool, set these values 
+in the 'config' table (sample values provided, explanation is just for reference).
+
+key                  value                            explanation
+------------------   ------------------------------   ---------------------
+ldap.server          yourservername.com               The server/IP where the LDAP directory resides.
+ldap.port            389                              The port the LDAP server listens on, 389 generally (636 for SSL).
+ldap.base_dn         o=company                        The root of all queries, unless otherwise specified.
+ldap.use_ssl         false                            "true" or "false" - Use SSL to connect.
+ldap.bind_user       cn=someuser,ou=admin,o=company   A fully qualified DN to authenticate as.
+ldap.bind_password   password                         The password of the authentication user.
+
+6) Copy 'directory.gif' to RADIANT_ROOT/public/images (this may be unnecessary in the future).
+
+7) Fire up Radiant and try it out!  Tag usage is described using the DSL/tag reference UI 
+and the tags are available on all pages.
+
+== Notes
+
+* Not all LDAP directories support root_dse, so the LDAP extension does not use root_dse 
+to determine any information about your directory schema. All information is 'in the raw'.
+
+* Any information returned by the query is in the order determined by the LDAP directory.
+No external sorting algorithms have been applied yet.
+
+* Fields/attributes that have multiple values are currently rendered as joined with commas.  
+This will be changed in a future release to use nested tags so output can be more flexible.
+
+== To-dos
+
+* Use 'password' field type on bind_password in settings UI.
+* 'Use SSL?' checkbox not maintaining state.
+* Implement flexible sorting for records.
